@@ -13,8 +13,10 @@ end
 
 depends 'java'
 
-recipe "oozie::default", "Installs and configures Oozie"
+recipe "oozie::default", "Installs and configures Oozie Server"
 
 attribute "oozie/user",
 :description => "User to run Oozie server as",
 :type => "string"
+
+
