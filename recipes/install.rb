@@ -119,3 +119,5 @@ template"#{node.oozie.home}/bin/oozie-stop.sh" do
 end
 
 
+package "zip" do
+end
