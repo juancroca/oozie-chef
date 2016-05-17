@@ -5,7 +5,7 @@ After = syslog.target network.target remote-fs.target
 [Service]
 User = <%= node.oozie.user %>
 
-PIDFile = /tmp/oozie.pid
+PIDFile = <%= node.oozie.home %>/oozie-server/temp/oozie.pid
 ExecStart = <%= node.oozie.home %>/bin/oozie-start.sh
 ExecStop = <%= node.oozie.home %>/bin/oozie-stop.sh
 LimitNOFILE = 10000

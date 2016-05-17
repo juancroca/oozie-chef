@@ -41,7 +41,7 @@ restart() {
 }
 
 status() {
-  PID_FILE=/tmp/oozie.pid
+  PID_FILE=
   if [ -f $PID_FILE ] ; then
      PID=`cat $PID_FILE`
      kill -0 $PID

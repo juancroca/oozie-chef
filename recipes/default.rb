@@ -89,7 +89,7 @@ if node.kagent.enabled == "true"
      start_script "#{node.oozie.home}/bin/oozie-start.sh"
      stop_script "#{node.oozie.home}/bin/oozie-stop.sh"
      log_file "#{node.oozie.home}/logs/oozie.log"
-     pid_file "/tmp/oozie.pid"
+     pid_file "<%= node.oozie.home %>/oozie-server/temp/oozie.pid"
      web_port 11000
    end
 end
