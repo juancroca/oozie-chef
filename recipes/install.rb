@@ -104,4 +104,18 @@ template"#{node.oozie.home}/conf/oozie-default.xml" do
            })
 end
 
+template"#{node.oozie.home}/bin/oozie-start.sh" do
+  source "oozie-start.sh.erb"
+  owner node.oozie.user
+  group node.oozie.group
+  mode 0655
+end
+
+template"#{node.oozie.home}/bin/oozie-stop.sh" do
+  source "oozie-stop.sh.erb"
+  owner node.oozie.user
+  group node.oozie.group
+  mode 0655
+end
+
 

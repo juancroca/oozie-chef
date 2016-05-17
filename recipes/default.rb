@@ -1,4 +1,4 @@
-my_ip = my_private_ip()
+nmy_ip = my_private_ip()
 my_public_ip = my_public_ip()
 
 db="oozie"
@@ -86,8 +86,8 @@ end
 if node.kagent.enabled == "true" 
    kagent_config service_name do
      service "YARN"
-     start_script "service #{service_name} start"
-     stop_script "service #{service_name} stop"
+     start_script "#{node.oozie.home}/bin/oozie-start.sh"
+     stop_script "#{node.oozie.home}/bin/oozie-stop.sh"
      log_file "#{node.oozie.home}/logs/oozie.log"
      pid_file "/tmp/oozie.pid"
      web_port 11000
