@@ -26,7 +26,7 @@ bash 'extract_oozie' do
                 rm conf/hadoop-conf/mapred-site.xml
                 ln -s #{node.apache_hadoop.base_dir}/etc/hadoop/core-site.xml conf/hadoop-conf/core-site.xml
                 ln -s #{node.apache_hadoop.base_dir}/etc/hadoop/mapred-site.xml conf/hadoop-conf/mapred-site.xml
-                wget -P libext #{hopsworks.mysql_connector_url}
+                wget -P libext #{node.hopsworks.mysql_connector_url}
                 # bin/oozie-setup.sh sharelib create -fs hdfs://#{nn}
                 touch #{oozie_downloaded}
                 chown #{node.oozie.user} #{node.oozie.dir}/.oozie.extracted_#{node.oozie.version}

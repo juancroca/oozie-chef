@@ -13,7 +13,7 @@ end
 
 
 
-tmp_dirs   = ["#{node.apache_hadoop.hdfs.user_home}/#{node.oozie.user}", eventlog_dir ]
+tmp_dirs   = ["#{node.apache_hadoop.hdfs.user_home}/#{node.oozie.user}"]
 for d in tmp_dirs
  apache_hadoop_hdfs_directory d do
     action :create
@@ -59,7 +59,7 @@ if node.oozie.systemd == "true"
     notifies :start, resources(:service => service_name), :immediately
   end
 
-  oozie_start "reload_oozie_daemon" do
+  hadoop_spark_start "reload_oozie_daemon" do
     action :systemd_reload
   end  
 
@@ -88,9 +88,9 @@ if node.kagent.enabled == "true"
      service "YARN"
      start_script "service #{service_name} start"
      stop_script "service #{service_name} stop"
-     log_file "#{node.oozie.logs_dir}/historyserver.log"
-     pid_file "/tmp/<%= node.oozie.user %>-spark-org.apache.spark.deploy.history.HistoryServer-1.pid"
-     web_port 18080
+     log_file "#{node.oozie.home}/logs/oozie.log"
+     pid_file "/tmp/oozie.pid"
+     web_port 11000
    end
 end
 
