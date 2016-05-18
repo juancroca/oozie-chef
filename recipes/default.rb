@@ -73,7 +73,7 @@ else #sysv
 
   template "/etc/init.d/#{service_name}" do
     source "#{service_name}.erb"
-    owner node.oozie.yarn.user
+    owner node.oozie.user
     group node.oozie.group
     mode 0754
     notifies :enable, resources(:service => service_name)
