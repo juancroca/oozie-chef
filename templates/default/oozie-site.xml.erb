@@ -78,7 +78,6 @@
     <value><%= node.mysql.password %></value>
 </property>
 
-
 <property>
     <name>oozie.service.SparkConfigurationService.spark.configurations</name>
     <value>*=<%= node.hadoop_spark.home %>/conf</value>
@@ -91,5 +90,37 @@
         when the Spark master is set to either "yarn-client" or "yarn-cluster".
     </description>
 </property>
+
+<property>
+    <name>oozie.email.smtp.port</name>
+    <value>587</value>
+</property>
+
+<property>
+    <name>oozie.email.smtp.host</name>
+    <value><%= node.hopsworks.smtp %></value>
+</property>
+
+
+<property>
+    <name>oozie.email.from.address</name>
+    <value><%= node.hopsworks.gmail.email %></value>
+</property>
+
+<property>
+    <name>oozie.email.smtp.password</name>
+    <value><%= node.hopsworks.gmail.password %></value>
+</property>
+
+<property>
+    <name>oozie.email.smtp.auth</name>
+    <value>true</value>
+</property>
+
+<property>
+    <name>oozie.email.smtp.auth</name>
+    <value>true</value>
+</property>
+
 
 </configuration>
