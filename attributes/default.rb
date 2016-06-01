@@ -15,7 +15,7 @@ default.oozie.base_dir                 = "/srv/oozie-" + "#{node.oozie.version}"
 default.oozie.home                     = "/srv/oozie"
 
 
-default.oozie.email.smtp               = node.hopsworks.smtp
+default.oozie.email.smtp.host          = node.hopsworks.smtp
 default.oozie.email.smtp.username      = ""
 default.oozie.email.smtp.port          = 587
 default.oozie.email.smtp.password      = ""
