@@ -13,7 +13,7 @@ end
 
 
 
-tmp_dirs   = ["#{node.apache_hadoop.hdfs.user_home}/#{node.oozie.user}"]
+tmp_dirs   = ["#{node.apache_hadoop.hdfs.user_home}/#{node.oozie.user}", "/Workflows", "/Worflows/lib"]
 for d in tmp_dirs
  apache_hadoop_hdfs_directory d do
     action :create
@@ -22,6 +22,16 @@ for d in tmp_dirs
     mode "1777"
     not_if ". #{node.apache_hadoop.home}/sbin/set-env.sh && #{node.apache_hadoop.home}/bin/hdfs dfs -test -d #{d}"
   end
+end
+
+spark_jar="#{node.hadoop_spark.home}/lib/spark-assembly-#{node.hadoop_spark.version}-hadoop#{node.hadoop_spark.hadoop.version}.jar"
+
+apache_hadoop_hdfs_directory "#{spark_jar}" do 
+  action :put_as_superuser
+  owner node.oozie.user
+  group node.oozie.group
+  mode "1775"
+  dest "/Worksflows/lib"
 end
 
 
@@ -89,10 +99,15 @@ if node.kagent.enabled == "true"
      start_script "#{node.oozie.home}/bin/oozie-start.sh"
      stop_script "#{node.oozie.home}/bin/oozie-stop.sh"
      log_file "#{node.oozie.home}/logs/oozie.log"
-     pid_file "<%= node.oozie.home %>/oozie-server/temp/oozie.pid"
+     pid_file "#{node.oozie.home}/oozie-server/temp/oozie.pid"
      web_port 11000
    end
 end
 
 
+firstNN = private_recipe_ip("apache_hadoop", "nn") + ":#{node.apache_hadoop.nn.port}"
 
+oozie_db do
+  nn firstNN
+  action :create
+end

@@ -80,7 +80,7 @@
 
 <property>
     <name>oozie.service.SparkConfigurationService.spark.configurations</name>
-    <value>*=<%= node.hadoop_spark.home %>/conf</value>
+    <value>*=spark-conf</value>
     <description>
         Comma separated AUTHORITY=SPARK_CONF_DIR, where AUTHORITY is the HOST:PORT of
         the ResourceManager of a YARN cluster. The wildcard '*' configuration is
@@ -93,39 +93,33 @@
 
 <property>
     <name>oozie.email.smtp.port</name>
-    <value>587</value>
+    <value><%= node.oozie.smtp.port %></value>
 </property>
 
 <property>
     <name>oozie.email.smtp.host</name>
-    <value><%= node.hopsworks.smtp %></value>
+    <value><%= node.oozie.smtp %></value>
 </property>
 
+<property>
+    <name>oozie.email.smtp.username</name>
+    <value><%= node.oozie.smtp.username %></value>
+</property>
 
 <property>
     <name>oozie.email.from.address</name>
-    <value><%= node.hopsworks.gmail.email %></value>
+    <value><%= node.oozie.from.address %></value>
 </property>
+
 
 <property>
     <name>oozie.email.smtp.password</name>
-    <value><%= node.hopsworks.gmail.password %></value>
+    <value><%= node.oozie.smtp.password %></value>
 </property>
 
 <property>
     <name>oozie.email.smtp.auth</name>
     <value>true</value>
 </property>
-
-<property>
-    <name>oozie.email.smtp.auth</name>
-    <value>true</value>
-</property>
-
-<property>
-    <name>oozie.email.smtp.starttls.enable</name>
-    <value>true</value>
-</property>
-
 
 </configuration>

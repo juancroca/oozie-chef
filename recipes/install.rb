@@ -121,3 +121,17 @@ end
 
 package "zip" do
 end
+
+
+examples = "#{node.oozie.home}/oozie-examples.tar.gz"
+unpacked = "#{node.oozie.home}/.examples_unpacked"
+
+bash "unpack_oozie_examples" do
+    user node.oozie.user
+    code <<-EOF
+cd #{node.oozie.home}
+tar -xzf #{examples}
+touch #{unpacked}
+EOF
+  not_if { ::File.exists?( unpacked ) }
+end
